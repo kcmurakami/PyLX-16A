@@ -10,7 +10,7 @@ servo1 = LX16A(1)
 #servo2 = LX16A(2)
 t = 0
 while True:
-# Two sine waves out of phase
-servo1.moveTimeWrite(120+sin(t)*50)
-#servo2.moveTimeWrite(120+cos(t)*50)
-t += 0.01
+    # Two sine waves out of phase
+    servo1.moveTimeWrite(120+sin(t)*50)
+    #servo2.moveTimeWrite(120+cos(t)*50)
+    t += 0.01
