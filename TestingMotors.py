@@ -7,10 +7,10 @@ from math import sin, cos
 LX16A.initialize('/dev/ttyUSB0')
 # There should two servos connected, with IDs 1 and 2
 servo1 = LX16A(1)
-#servo2 = LX16A(2)
+servo2 = LX16A(2)
 t = 0
 while True:
     # Two sine waves out of phase
-    servo1.moveTimeWrite(120+sin(t)*50)
-    #servo2.moveTimeWrite(120+cos(t)*50)
+    servo1.moveTimeWrite(120+sin(t)*20)
+    servo2.moveTimeWrite(120+cos(t)*20)
     t += 0.01
