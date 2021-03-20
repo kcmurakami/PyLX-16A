@@ -27,90 +27,93 @@ init7 = servo7.getPhysicalPos()
 init8 = servo8.getPhysicalPos()
 
 #Move to Home position and Check for temperature and voltage errors
-servo1.moveTimeWrite(Home1)
+
+lock = 0 # add LOCK if statement
+
+servo1.moveTimeWrite(100)
 if servo1.tempRead() > servo1.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo1.vInRead() > servo1.vInLimitRead():
+if servo1.vInRead() > max(servo1.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo1.LEDErrorWrite(temp,volt)
+servo1.LEDErrorWrite(temp,volt,lock)
 
-servo2.moveTimeWrite(Home2)
+servo2.moveTimeWrite(130)
 if servo2.tempRead() > servo2.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo2.vInRead() > servo2.vInLimitRead():
+if servo2.vInRead() > max(servo2.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo2.LEDErrorWrite(temp,volt)
+servo2.LEDErrorWrite(temp,volt,lock)
 
-servo3.moveTimeWrite(Home3)
+servo3.moveTimeWrite(120)
 if servo3.tempRead() > servo3.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo3.vInRead() > servo3.vInLimitRead():
+if servo3.vInRead() > max(servo3.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo3.LEDErrorWrite(temp,volt)
+servo3.LEDErrorWrite(temp,volt,lock)
 
-servo4.moveTimeWrite(Home4)
+servo4.moveTimeWrite(100)
 if servo4.tempRead() > servo4.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo4.vInRead() > servo4.vInLimitRead():
+if servo4.vInRead() > max(servo4.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo4.LEDErrorWrite(temp,volt)
+servo4.LEDErrorWrite(temp,volt,lock)
 
-servo5.moveTimeWrite(Home5)
+servo5.moveTimeWrite(20)
 if servo5.tempRead() > servo5.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo5.vInRead() > servo5.vInLimitRead():
+if servo5.vInRead() > max(servo5.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo5.LEDErrorWrite(temp,volt)
+servo5.LEDErrorWrite(temp,volt,lock)
 
-servo6.moveTimeWrite(Home6)
+servo6.moveTimeWrite(120)
 if servo6.tempRead() > servo6.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo6.vInRead() > servo6.vInLimitRead():
+if servo6.vInRead() > max(servo6.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo6.LEDErrorWrite(temp,volt)
+servo6.LEDErrorWrite(temp,volt,lock)
 
-servo7.moveTimeWrite(Home7)
+servo7.moveTimeWrite(100)
 if servo7.tempRead() > servo7.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo7.vInRead() > servo7.vInLimitRead():
+if servo7.vInRead() > max(servo7.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo7.LEDErrorWrite(temp,volt)
+servo7.LEDErrorWrite(temp,volt,lock)
 
-servo8.moveTimeWrite(Home8)
+servo8.moveTimeWrite(85)
 if servo8.tempRead() > servo8.tempMaxLimitRead():
     temp = 1
 else:
     temp = 0
-if servo8.vInRead() > servo8.vInLimitRead():
+if servo8.vInRead() > max(servo8.vInLimitRead()):
     volt = 1
 else:
     volt = 0
-servo8.LEDErrorWrite(temp,volt)
+servo8.LEDErrorWrite(temp,volt,lock)
