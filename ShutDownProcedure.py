@@ -1,5 +1,4 @@
 from lx16a import *
-from math import sin, cos
 """
 # This is the port that the controller board is connected to
 # This will be different for different computers
@@ -18,7 +17,7 @@ servo8 = LX16A(8)
 t = 0
 """
 
-def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8):
+def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8):
 
     #Query Initial Motor position
     init1 = servo1.getPhysicalPos()
@@ -46,24 +45,24 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
     if type(init8) != 'int':
         print('Com Error: servo 8 is of type ', type(init8))
 
-    # Home Positions
-    Home1 = 100
-    Home2 = 130
-    Home3 = 120
-    Home4 = 100
-    Home5 = 20
-    Home6 = 120
-    Home7 = 100
-    Home8 = 85
+    # Shutdown Positions
+    Shutdown1 = 100
+    Shutdown2 = 130
+    Shutdown3 = 120
+    Shutdown4 = 100
+    Shutdown5 = 20
+    Shutdown6 = 120
+    Shutdown7 = 100
+    Shutdown8 = 85
 
     #Move to Home position and Check for temperature and voltage errors
 
     lock = 0 # add LOCK if statement
 
-    servo1.moveTimeWrite(Home1, time=1)
-    if servo1.getPhysicalPos() != Home1:
-        print('Homing Error: servo 1 did not reach Home')
-        servo1.moveTimeWrite(Home1)
+    servo1.moveTimeWrite(Shutdown1, time=1)
+    if servo1.getPhysicalPos() != Shutdown1:
+        print('Shutdown Error: servo 1 did not reach Shutdown Position')
+        servo1.moveTimeWrite(Shutdown1)
     if servo1.tempRead() > servo1.tempMaxLimitRead():
         temp = 1
     else:
@@ -74,10 +73,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo1.LEDErrorWrite(temp,volt,lock)
 
-    servo2.moveTimeWrite(Home2, time=1)
-    if servo2.getPhysicalPos() != Home2:
-        print('Homing Error: servo 2 did not reach Home')
-        servo2.moveTimeWrite(Home2)
+    servo2.moveTimeWrite(Shutdown2, time=1)
+    if servo2.getPhysicalPos() != Shutdown2:
+        print('Shutdown Error: servo 2 did not reach Shutdown Position')
+        servo2.moveTimeWrite(Shutdown2)
     if servo2.tempRead() > servo2.tempMaxLimitRead():
         temp = 1
     else:
@@ -88,10 +87,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo2.LEDErrorWrite(temp,volt,lock)
 
-    servo3.moveTimeWrite(Home3, time=1)
-    if servo3.getPhysicalPos() != Home3:
-        print('Homing Error: servo 3 did not reach Home')
-        servo3.moveTimeWrite(Home3)
+    servo3.moveTimeWrite(Shutdown3, time=1)
+    if servo3.getPhysicalPos() != Shutdown3:
+        print('Shutdown Error: servo 3 did not reach Shutdown Position')
+        servo3.moveTimeWrite(Shutdown3)
     if servo3.tempRead() > servo3.tempMaxLimitRead():
         temp = 1
     else:
@@ -102,10 +101,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo3.LEDErrorWrite(temp,volt,lock)
 
-    servo4.moveTimeWrite(Home4, time=1)
-    if servo4.getPhysicalPos() != Home4:
-        print('Homing Error: servo 4 did not reach Home')
-        servo4.moveTimeWrite(Home4)
+    servo4.moveTimeWrite(Shutdown4, time=1)
+    if servo4.getPhysicalPos() != Shutdown4:
+        print('Shutdown Error: servo 4 did not reach Shutdown Position')
+        servo4.moveTimeWrite(Shutdown4)
     if servo4.tempRead() > servo4.tempMaxLimitRead():
         temp = 1
     else:
@@ -116,10 +115,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo4.LEDErrorWrite(temp,volt,lock)
 
-    servo5.moveTimeWrite(Home5, time=1)
-    if servo5.getPhysicalPos() != Home5:
-        print('Homing Error: servo 5 did not reach Home')
-        servo5.moveTimeWrite(Home5)
+    servo5.moveTimeWrite(Shutdown5, time=1)
+    if servo5.getPhysicalPos() != Shutdown5:
+        print('Shutdown Error: servo 5 did not reach Shutdown Position')
+        servo5.moveTimeWrite(Shutdown5)
     if servo5.tempRead() > servo5.tempMaxLimitRead():
         temp = 1
     else:
@@ -130,10 +129,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo5.LEDErrorWrite(temp,volt,lock)
 
-    servo6.moveTimeWrite(Home6, time=1)
-    if servo6.getPhysicalPos() != Home6:
-        print('Homing Error: servo 6 did not reach Home')
-        servo6.moveTimeWrite(Home6)
+    servo6.moveTimeWrite(Shutdown6, time=1)
+    if servo6.getPhysicalPos() != Shutdown6:
+        print('Shutdown Error: servo 6 did not reach Shutdown Position')
+        servo6.moveTimeWrite(Shutdown6)
     if servo6.tempRead() > servo6.tempMaxLimitRead():
         temp = 1
     else:
@@ -144,10 +143,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo6.LEDErrorWrite(temp,volt,lock)
 
-    servo7.moveTimeWrite(Home7, time=1)
-    if servo7.getPhysicalPos() != Home7:
-        print('Homing Error: servo 7 did not reach Home')
-        servo7.moveTimeWrite(Home7)
+    servo7.moveTimeWrite(Shutdown7, time=1)
+    if servo7.getPhysicalPos() != Shutdown7:
+        print('Shutdown Error: servo 7 did not reach Shutdown Position')
+        servo7.moveTimeWrite(Shutdown7)
     if servo7.tempRead() > servo7.tempMaxLimitRead():
         temp = 1
     else:
@@ -158,10 +157,10 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo7.LEDErrorWrite(temp,volt,lock)
 
-    servo8.moveTimeWrite(Home8, time=1)
-    if servo8.getPhysicalPos() != Home8:
-        print('Homing Error: servo 8 did not reach Home')
-        servo8.moveTimeWrite(Home8)
+    servo8.moveTimeWrite(Shutdown8, time=1)
+    if servo8.getPhysicalPos() != Shutdown8:
+        print('Shutdown Error: servo 8 did not reach Shutdown Position')
+        servo8.moveTimeWrite(Shutdown8)
     if servo8.tempRead() > servo8.tempMaxLimitRead():
         temp = 1
     else:
