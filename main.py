@@ -1,6 +1,6 @@
 from lx16a import *
 from BootSelfTest import *
-from HomingInitilization import *
+from HomingInitialization import *
 from HealthCheck import *
 from ShutDownProcedure import *
 from TestingMotors import *
@@ -21,15 +21,18 @@ servo7 = LX16A(7)
 servo8 = LX16A(8)
 t = 0
 
-BootSelfTest.BootSelfTest(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+init8 = servo8.getPhysicalPos()
+print(init8)
+
+BootSelfTest(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Boot Self Test Completed')
-HomingInitilization.HomingInitilization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
-print('Homing Initilization Completed')
+HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+print('Homing Initialization Completed')
 
-#TestingMotors.Walking(servo1, servo2, servo3, servo4)
+TestingMotors.Walking(servo1, servo2, servo3, servo4)
 
-HealthCheck.HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Health Check Completed')
 
-ShutDownProcedure.ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Shut Down Procedure Completed')

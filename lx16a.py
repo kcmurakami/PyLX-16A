@@ -101,7 +101,7 @@ class LX16A:
 		
 		packet = [0x55, 0x55, self.ID, 7, 1, *LX16A.toBytes(angle), *LX16A.toBytes(time)]
 		LX16A.sendPacket(packet)
-	
+		
 	# This command is similar to servo.moveTimeWrite,
 	# except that the servo will not begin rotation
 	# until it receives the servo.moveStart command
