@@ -177,7 +177,9 @@ class LX16A:
 	def angleOffsetAdjust(self, offset):
 		if offset < -30 or offset > 30:
 			raise ServoError("Offset out of range")
-		
+				
+		angle = self.angle        # KASEY MURAKAMI ADDED THIS LINE BECAUSE OF ERROR RUNNING CODE
+				
 		angle = int(angle * 25 / 6)
 		
 		if offset < 0:

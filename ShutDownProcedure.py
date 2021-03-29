@@ -47,11 +47,11 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         print('Com Error: servo 8 is of type ', type(init8))
 
     # Shutdown Positions
-    Shutdown1 = 120
-    Shutdown2 = 125
-    Shutdown3 = 125
-    Shutdown4 = 90
-    Shutdown5 = 20
+    Shutdown1 = 20
+    Shutdown2 = 90
+    Shutdown3 = 130
+    Shutdown4 = 130
+    Shutdown5 = 120
     Shutdown6 = 120
     Shutdown7 = 100
     Shutdown8 = 85

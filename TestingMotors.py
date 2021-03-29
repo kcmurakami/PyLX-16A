@@ -8,11 +8,21 @@ from math import sin, cos
 LX16A.initialize('/dev/ttyUSB0')
 """
 
-def Walking(servo1, servo2, servo3, servo4):
-    while t < 5:
+def Walking(front1, back1, front2, back2):
+    print('walking')
+    t=0
+    while t < 10:
         # Two sine waves out of phase
-        servo1.moveTimeWrite(100+sin(t)*10)
-        servo2.moveTimeWrite(120+cos(t)*20)
-        servo3.moveTimeWrite(100+sin(t)*10)
-        servo4.moveTimeWrite(120+cos(t)*20)
+        front1.moveTimeWrite(100+sin(t)*10)
+        back1.moveTimeWrite(130+cos(t)*20)
+        front2.moveTimeWrite(110+sin(t)*10)
+        back2.moveTimeWrite(130+cos(t)*20)
         t += 0.01
+        
+        
+def headSwinging(head, Home):
+    t = 0
+    while t < 100:
+        head.moveTimeWrite(Home+ sin(t)*40)
+        #print(head.getVirtualPos())
+        t +=0.003

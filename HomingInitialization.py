@@ -1,5 +1,6 @@
 from lx16a import *
 from math import sin, cos
+import time
 """
 # This is the port that the controller board is connected to
 # This will be different for different computers
@@ -42,27 +43,38 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
     init7 = servo7.getPhysicalPos()
     if isinstance(init7, int) == False:
         print('Com Error: servo 7 is of type ', type(init7))
-    #init8 = servo8.getPhysicalPos()
-    init8 = 84
+    init8 = servo8.getPhysicalPos()
+    #init8 = 84
     if isinstance(init8, int) == False:
         print('Com Error: servo 8 is of type ', type(init8))
 
     # Home Positions
-    Home1 = 120
-    Home2 = 125
-    Home3 = 125
-    Home4 = 90
-    Home5 = 20
+    Home1 = 20
+    Home2 = 95
+    Home3 = 128
+    Home4 = 122
+    Home5 = 115
     Home6 = 120
     Home7 = 100
     Home8 = 85
-
+    
+    # Move to Home Position
+    servo1.moveTimeWrite(Home1, time=1000)
+    servo2.moveTimeWrite(Home2, time=1000)
+    servo3.moveTimeWrite(Home3, time=1000)
+    servo4.moveTimeWrite(Home4, time=1000)
+    servo5.moveTimeWrite(Home5, time=1000)
+    servo6.moveTimeWrite(Home6, time=1000)
+    servo7.moveTimeWrite(Home7, time=1000)
+    servo8.moveTimeWrite(Home8, time=1000)
+    time.sleep(1)
+    
     #Move to Home position and Check for temperature and voltage errors
 
     lock = 0 # add LOCK if statement
 
-    servo1.moveTimeWrite(Home1, time=1000)
-    if not Home1-3 < servo1.getPhysicalPos() < Home1+3:
+
+    if not Home1-5 < servo1.getPhysicalPos() < Home1+5:
         print('Homing Error: servo 1:', servo1.getPhysicalPos())
         servo1.moveTimeWrite(Home1)
     if servo1.tempRead() > servo1.tempMaxLimitRead():
@@ -75,8 +87,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo1.LEDErrorWrite(temp,volt,lock)
 
-    servo2.moveTimeWrite(Home2, time=1000)
-    if not Home2-3 < servo2.getPhysicalPos() < Home2+3:
+
+    if not Home2-5 < servo2.getPhysicalPos() < Home2+5:
         print('Homing Error: servo 2:', servo2.getPhysicalPos())
         servo2.moveTimeWrite(Home2)
     if servo2.tempRead() > servo2.tempMaxLimitRead():
@@ -89,8 +101,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo2.LEDErrorWrite(temp,volt,lock)
 
-    servo3.moveTimeWrite(Home3, time=1000)
-    if not Home3-3 < servo3.getPhysicalPos() < Home3+3:
+
+    if not Home3-5 < servo3.getPhysicalPos() < Home3+5:
         print('Homing Error: servo 3:', servo3.getPhysicalPos())
         servo3.moveTimeWrite(Home3)
     if servo3.tempRead() > servo3.tempMaxLimitRead():
@@ -103,8 +115,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo3.LEDErrorWrite(temp,volt,lock)
 
-    servo4.moveTimeWrite(Home4, time=1000)
-    if not Home4-3 < servo4.getPhysicalPos() < Home4+3:
+
+    if not Home4-5 < servo4.getPhysicalPos() < Home4+5:
         print('Homing Error: servo 4:', servo4.getPhysicalPos())
         servo4.moveTimeWrite(Home4)
     if servo4.tempRead() > servo4.tempMaxLimitRead():
@@ -117,8 +129,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo4.LEDErrorWrite(temp,volt,lock)
 
-    servo5.moveTimeWrite(Home5, time=1000)
-    if not Home5-3 < servo5.getPhysicalPos() < Home5+3:
+
+    if not Home5-5 < servo5.getPhysicalPos() < Home5+5:
         print('Homing Error: servo 5:', servo5.getPhysicalPos())
         servo5.moveTimeWrite(Home5)
     if servo5.tempRead() > servo5.tempMaxLimitRead():
@@ -131,8 +143,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo5.LEDErrorWrite(temp,volt,lock)
 
-    servo6.moveTimeWrite(Home6, time=1000)
-    if not Home6-3 < servo6.getPhysicalPos() < Home6+3:
+
+    if not Home6-5 < servo6.getPhysicalPos() < Home6+5:
         print('Homing Error: servo 6:', servo6.getPhysicalPos())
         servo6.moveTimeWrite(Home6)
     if servo6.tempRead() > servo6.tempMaxLimitRead():
@@ -145,8 +157,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo6.LEDErrorWrite(temp,volt,lock)
 
-    servo7.moveTimeWrite(Home7, time=1000)
-    if not Home7-3 < servo7.getPhysicalPos() < Home7+3:
+
+    if not Home7-5 < servo7.getPhysicalPos() < Home7+5:
         print('Homing Error: servo 7:', servo7.getPhysicalPos())
         servo7.moveTimeWrite(Home7)
     if servo7.tempRead() > servo7.tempMaxLimitRead():
@@ -159,8 +171,8 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         volt = 0
     servo7.LEDErrorWrite(temp,volt,lock)
 
-    servo8.moveTimeWrite(Home8, time=1000)
-    if not Home8-3 < servo8.getPhysicalPos() < Home8+3:
+
+    if not Home8-5 < servo8.getPhysicalPos() < Home8+5:
         print('Homing Error: servo 8:', servo8.getPhysicalPos())
         servo8.moveTimeWrite(Home8)
     if servo8.tempRead() > servo8.tempMaxLimitRead():
@@ -172,3 +184,5 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
     else:
         volt = 0
     servo8.LEDErrorWrite(temp,volt,lock)
+
+    
