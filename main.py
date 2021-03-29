@@ -26,11 +26,11 @@ t = 0
 
 
 # Home Positions
-Home1 = 20  # right wing
-Home2 = 95  # back right - to rotate back, subtract
+Home1 = 110  # right wing
+Home2 = 88  # back right - to rotate back, subtract
 Home3 = 128  # front right - to rotate back, subtract
-Home4 = 122  # front left - to rotate back, add
-Home5 = 115  # back left - to rotate back, add
+Home4 = 124  # front left - to rotate back, add
+Home5 = 122  # back left - to rotate back, add
 Home6 = 120
 Home7 = 100
 Home8 = 85
@@ -39,10 +39,20 @@ Home8 = 85
 init8 = servo8.getPhysicalPos()
 #print(init8)
 
-"""servo8.moveTimeWrite(120)
-servo7.moveTimeWrite(70)
-servo1.moveTimeWrite(50)
-servo6.moveTimeWrite(90)"""
+bpm = 94
+if bpm <= 80:
+    tupper = 0.0065
+elif 80 < bpm <= 85:
+    tupper = 0.008
+
+elif 90 < bpm <= 95:
+    tupper = 0.0085
+
+elif 120 < bpm:
+    tupper = 0.012
+    
+print('bpm: ', bpm)
+print('t = ', tupper)
 
 BootSelfTest(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Boot Self Test Completed')
@@ -54,18 +64,21 @@ HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Health Check Completed')
 # init8 in HealthCheck is commented out
 
+
 time.sleep(1)
 
-MovingMotors.UpperBody(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
+MovingMotors.LeftForward(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
 
-STOP
+MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
 
-
-MovingMotors.Walking(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
-STOP
-
+time.sleep(1)
 HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Homing Initialization Completed')
+
+STOP
+
+MovingMotors.Walking(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
 STOP
 
 

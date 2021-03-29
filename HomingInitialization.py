@@ -49,11 +49,11 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
         print('Com Error: servo 8 is of type ', type(init8))
 
     # Home Positions
-    Home1 = 20
-    Home2 = 95
-    Home3 = 128
-    Home4 = 122
-    Home5 = 115
+    Home1 = 110
+    Home2 = 88   # back right - to rotate back, subtract
+    Home3 = 128   # front right - to rotate back, subtract
+    Home4 = 124   # front left - to rotate back, add
+    Home5 = 122   # back left - to rotate back, add
     Home6 = 120
     Home7 = 100
     Home8 = 85
