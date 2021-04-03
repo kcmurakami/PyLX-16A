@@ -40,17 +40,15 @@ init8 = servo8.getPhysicalPos()
 #print(init8)
 
 bpm = 94
-if bpm <= 80:
+if bpm =75:
     tupper = 0.0065
-elif 80 < bpm <= 85:
+elif bpm = 85:
     tupper = 0.008
-
-elif 90 < bpm <= 95:
+elif bpm = 94:
     tupper = 0.0085
-
-elif 120 < bpm:
+elif bpm = 130:
     tupper = 0.012
-    
+
 print('bpm: ', bpm)
 print('t = ', tupper)
 
@@ -64,24 +62,33 @@ HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Health Check Completed')
 # init8 in HealthCheck is commented out
 
-
 time.sleep(1)
 
 MovingMotors.LeftForward(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
-
 MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
+HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+print('Health Check Completed')
 
 time.sleep(1)
+
 HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
-print('Homing Initialization Completed')
+MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
+HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+print('Health Check Completed')
 
-STOP
+time.sleep(1)
 
-MovingMotors.Walking(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+MovingMotors.RightForward(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
+HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
+print('Health Check Completed')
 
-STOP
-
-
+time.sleep(1)
 
 ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Shut Down Procedure Completed')
+
+STOP
+
+
+MovingMotors.Walking(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)

@@ -3,37 +3,37 @@ from math import sin, cos
 import time
 
 class MovingMotors:
-    
+
     def HeadSwinging(head, Home):
         t = 0
         while t < 10:
             head.moveTimeWrite(Home+ sin(t)*40)
             t += 0.003
-            
-    
+
+
     def NeckBobbing(neck, Home):
         t = 0
         while t < 10:
             neck.moveTimeWrite(Home+sin(t)*10)
             t += 0.003
-            
+
     def HeadAndNeck(head, HomeHead, neck, HomeNeck):
         t = 0
         while t < 50:
             head.moveTimeWrite(HomeHead+sin(t)*40)
             neck.moveTimeWrite(HomeNeck+sin(t)*10)
             t += 0.003
-            
-            
+
+
     def UpperBody(tupper, head, HomeHead, neck, HomeNeck, lwing, Homelwing, rwing, Homerwing):
         t = 0
         while t < 50:
             head.moveTimeWrite(HomeHead+sin(t)*50)
-            neck.moveTimeWrite(HomeNeck+sin(t)*10)
+            neck.moveTimeWrite(HomeNeck+sin(0.5*t)*10) # move slower?
             lwing.moveTimeWrite(Homelwing+sin(t)*40)
             rwing.moveTimeWrite(Homerwing+sin(t)*40)
             t += tupper
-            
+
     def RightForward(lfront, lfHome, lback, lbHome, rfront, rfHome, rback, rbHome):
         t=0
         lfront.moveTimeWrite(lfHome+25, time=2000)
@@ -49,7 +49,7 @@ class MovingMotors:
         rback.moveTimeWrite(rbHome-40, time=2000)
         time.sleep(2)
 
-            
+
     def Walking(lfront, lfHome, lback, lbHome, rfront, rfHome, rback, rbHome):
         t = 0
         # rotate back motors backwards

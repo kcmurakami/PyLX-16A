@@ -1,21 +1,5 @@
 from lx16a import *
-"""
-# This is the port that the controller board is connected to
-# This will be different for different computers
-# On Windows, try the ports COM1, COM2, COM3, etc...
-# On Raspbian, try each port in /dev/
-LX16A.initialize('/dev/ttyUSB0')
 
-servo1 = LX16A(1)
-servo2 = LX16A(2)
-servo3 = LX16A(3)
-servo4 = LX16A(4)
-servo5 = LX16A(5)
-servo6 = LX16A(6)
-servo7 = LX16A(7)
-servo8 = LX16A(8)
-t = 0
-"""
 
 def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8):
 
@@ -47,21 +31,31 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         print('Com Error: servo 8 is of type ', type(init8))
 
     # Shutdown Positions
-    Shutdown1 = 20
-    Shutdown2 = 90
-    Shutdown3 = 130
-    Shutdown4 = 130
-    Shutdown5 = 120
+    Shutdown1 = 110
+    Shutdown2 = 88   # back right - to rotate back, subtract
+    Shutdown3 = 128   # front right - to rotate back, subtract
+    Shutdown4 = 124   # front left - to rotate back, add
+    Shutdown5 = 122   # back left - to rotate back, add
     Shutdown6 = 120
     Shutdown7 = 100
     Shutdown8 = 85
 
-    #Move to Home position and Check for temperature and voltage errors
+    # Move to Shutdown position
+    servo1.moveTimeWrite(Shutdown1, time=1000)
+    servo2.moveTimeWrite(Shutdown2, time=1000)
+    servo3.moveTimeWrite(Shutdown3, time=1000)
+    servo4.moveTimeWrite(Shutdown4, time=1000)
+    servo5.moveTimeWrite(Shutdown5, time=1000)
+    servo6.moveTimeWrite(Shutdown6, time=1000)
+    servo7.moveTimeWrite(Shutdown7, time=1000)
+    servo8.moveTimeWrite(Shutdown8, time=1000)
+
+
+    #Check for temperature and voltage errors
 
     lock = 0 # add LOCK if statement
 
-    servo1.moveTimeWrite(Shutdown1, time=1000)
-    if not Shutdown1-3 < servo1.getPhysicalPos() < Shutdown1+3:
+    if not Shutdown1-5 < servo1.getPhysicalPos() < Shutdown1+5:
         print('Shutdown Error: servo 1:', servo1.getPhysicalPos())
         servo1.moveTimeWrite(Shutdown1)
     if servo1.tempRead() > servo1.tempMaxLimitRead():
@@ -74,8 +68,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo1.LEDErrorWrite(temp,volt,lock)
 
-    servo2.moveTimeWrite(Shutdown2, time=1000)
-    if not Shutdown2-3 < servo2.getPhysicalPos() < Shutdown2+3:
+    if not Shutdown2-5 < servo2.getPhysicalPos() < Shutdown2+5:
         print('Shutdown Error: servo 2:', servo2.getPhysicalPos())
         servo2.moveTimeWrite(Shutdown2)
     if servo2.tempRead() > servo2.tempMaxLimitRead():
@@ -88,8 +81,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo2.LEDErrorWrite(temp,volt,lock)
 
-    servo3.moveTimeWrite(Shutdown3, time=1000)
-    if not Shutdown3-3 < servo3.getPhysicalPos() < Shutdown3+3:
+    if not Shutdown3-5 < servo3.getPhysicalPos() < Shutdown3+5:
         print('Shutdown Error: servo 3:', servo3.getPhysicalPos())
         servo3.moveTimeWrite(Shutdown3)
     if servo3.tempRead() > servo3.tempMaxLimitRead():
@@ -102,8 +94,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo3.LEDErrorWrite(temp,volt,lock)
 
-    servo4.moveTimeWrite(Shutdown4, time=1000)
-    if not Shutdown4-3 < servo4.getPhysicalPos() < Shutdown4+3:
+    if not Shutdown4-5 < servo4.getPhysicalPos() < Shutdown4+5:
         print('Shutdown Error: servo 4:', servo4.getPhysicalPos())
         servo4.moveTimeWrite(Shutdown4)
     if servo4.tempRead() > servo4.tempMaxLimitRead():
@@ -116,8 +107,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo4.LEDErrorWrite(temp,volt,lock)
 
-    servo5.moveTimeWrite(Shutdown5, time=1000)
-    if not Shutdown5-3 < servo5.getPhysicalPos() < Shutdown5+3:
+    if not Shutdown5-5 < servo5.getPhysicalPos() < Shutdown5+5:
         print('Shutdown Error: servo 5:', servo5.getPhysicalPos())
         servo5.moveTimeWrite(Shutdown5)
     if servo5.tempRead() > servo5.tempMaxLimitRead():
@@ -130,8 +120,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo5.LEDErrorWrite(temp,volt,lock)
 
-    servo6.moveTimeWrite(Shutdown6, time=1000)
-    if not Shutdown6-3 < servo6.getPhysicalPos() < Shutdown6+3:
+    if not Shutdown6-5 < servo6.getPhysicalPos() < Shutdown6+5:
         print('Shutdown Error: servo 6:', servo6.getPhysicalPos())
         servo6.moveTimeWrite(Shutdown6)
     if servo6.tempRead() > servo6.tempMaxLimitRead():
@@ -144,8 +133,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo6.LEDErrorWrite(temp,volt,lock)
 
-    servo7.moveTimeWrite(Shutdown7, time=1000)
-    if not Shutdown7-3 < servo7.getPhysicalPos() < Shutdown7+3:
+    if not Shutdown7-5 < servo7.getPhysicalPos() < Shutdown7+5:
         print('Shutdown Error: servo 7:', servo7.getPhysicalPos())
         servo7.moveTimeWrite(Shutdown7)
     if servo7.tempRead() > servo7.tempMaxLimitRead():
@@ -158,8 +146,7 @@ def ShutDownProcedure(servo1, servo2, servo3, servo4, servo5, servo6, servo7, se
         volt = 0
     servo7.LEDErrorWrite(temp,volt,lock)
 
-    servo8.moveTimeWrite(Shutdown8, time=1000)
-    if not Shutdown8-3 < servo8.getPhysicalPos() < Shutdown8+3:
+    if not Shutdown8-5 < servo8.getPhysicalPos() < Shutdown8+5:
         print('Shutdown Error: servo 8:', servo8.getPhysicalPos())
         servo8.moveTimeWrite(Shutdown8)
     if servo8.tempRead() > servo8.tempMaxLimitRead():

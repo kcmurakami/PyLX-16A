@@ -1,23 +1,7 @@
 from lx16a import *
 from math import sin, cos
 import time
-"""
-# This is the port that the controller board is connected to
-# This will be different for different computers
-# On Windows, try the ports COM1, COM2, COM3, etc...
-# On Raspbian, try each port in /dev/
-LX16A.initialize('/dev/ttyUSB0')
 
-servo1 = LX16A(1)
-servo2 = LX16A(2)
-servo3 = LX16A(3)
-servo4 = LX16A(4)
-servo5 = LX16A(5)
-servo6 = LX16A(6)
-servo7 = LX16A(7)
-servo8 = LX16A(8)
-t = 0
-"""
 
 def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8):
 
@@ -57,7 +41,7 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
     Home6 = 120
     Home7 = 100
     Home8 = 85
-    
+
     # Move to Home Position
     servo1.moveTimeWrite(Home1, time=1000)
     servo2.moveTimeWrite(Home2, time=1000)
@@ -68,7 +52,7 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
     servo7.moveTimeWrite(Home7, time=1000)
     servo8.moveTimeWrite(Home8, time=1000)
     time.sleep(1)
-    
+
     #Move to Home position and Check for temperature and voltage errors
 
     lock = 0 # add LOCK if statement
@@ -184,5 +168,3 @@ def HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7,
     else:
         volt = 0
     servo8.LEDErrorWrite(temp,volt,lock)
-
-    
