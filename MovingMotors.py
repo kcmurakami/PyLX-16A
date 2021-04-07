@@ -27,12 +27,15 @@ class MovingMotors:
 
     def UpperBody(tupper, head, HomeHead, neck, HomeNeck, lwing, Homelwing, rwing, Homerwing):
         t = 0
+        #dt = 0.01
         while t < 50:
+            #timer = time.time()
             head.moveTimeWrite(HomeHead+sin(t)*50)
             neck.moveTimeWrite(HomeNeck+sin(0.5*t)*10) # move slower?
             lwing.moveTimeWrite(Homelwing+sin(t)*40)
             rwing.moveTimeWrite(Homerwing+sin(t)*40)
             t += tupper
+            #time.sleep(max(0, dt - (time.time() - timer)))
 
     def RightForward(lfront, lfHome, lback, lbHome, rfront, rfHome, rback, rbHome):
         t=0

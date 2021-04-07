@@ -3,9 +3,8 @@ from BootSelfTest import *
 from HomingInitialization import *
 from HealthCheck import *
 from ShutDownProcedure import *
-from TestingMotors import Walking
-from TestingMotors import headSwinging
 from MovingMotors import MovingMotors
+from danceMoves import DanceMoves
 import time
 
 # This is the port that the controller board is connected to
@@ -36,21 +35,18 @@ Home7 = 100
 Home8 = 85
 
 
-init8 = servo8.getPhysicalPos()
-#print(init8)
-
 bpm = 94
 if bpm =75:
-    tupper = 0.0065
+    dt = 0.0065
 elif bpm = 85:
-    tupper = 0.008
+    dt = 0.008
 elif bpm = 94:
-    tupper = 0.0085
+    dt = 0.0085
 elif bpm = 130:
-    tupper = 0.012
+    dt = 0.012
 
 print('bpm: ', bpm)
-print('t = ', tupper)
+print('t = ', dt)
 
 BootSelfTest(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
 print('Boot Self Test Completed')
@@ -64,24 +60,36 @@ print('Health Check Completed')
 
 time.sleep(1)
 
+DanceMoves.Bobbing(dt, servo7, Home7)
+DanceMoves.HomePositions(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
+DanceMoves.FlapWings(dt, servo7, Home7, servo6, Home6, servo1, Home1)
+DanceMoves.HomePositions(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
+DanceMoves.PoseLeft(dt, servo8, Home8, servo6, Home6, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+time.sleep(2)
+DanceMoves.HomePositions(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
+DanceMoves.PoseRight(dt, servo8, Home8, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+time.sleep(2)
+DanceMoves.HomePositions(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
+DanceMoves.FullDance(dt, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
+DanceMoves.HomePositions(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
+DanceMoves.PoseLeft(dt, servo8, Home8, servo6, Home6, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+time.sleep(2)
+DanceMoves.HomePositions(servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1, servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
+
+STOP
+
 MovingMotors.LeftForward(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
 MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
-HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
-print('Health Check Completed')
-
-time.sleep(1)
-
-HomingInitialization(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
-MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
-HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
-print('Health Check Completed')
 
 time.sleep(1)
 
 MovingMotors.RightForward(servo4, Home4, servo5, Home5, servo3, Home3, servo2, Home2)
 MovingMotors.UpperBody(tupper, servo8, Home8, servo7, Home7, servo6, Home6, servo1, Home1)
-HealthCheck(servo1, servo2, servo3, servo4, servo5, servo6, servo7, servo8)
-print('Health Check Completed')
 
 time.sleep(1)
 
